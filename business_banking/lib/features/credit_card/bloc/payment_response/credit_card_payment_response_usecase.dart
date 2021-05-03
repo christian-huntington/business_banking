@@ -11,11 +11,7 @@ class CreditCardPaymentResponseUseCase extends UseCase {
   CreditCardPaymentResponseUseCase(ViewModelCallback<ViewModel> viewModelCallBack) : _viewModelCallBack = viewModelCallBack;
 
   Future<void> create() async {
-    //print("CreditCardPaymentResponseUseCase.create");
     _scopePaymentResponse = ExampleLocator().repository.create<CreditCardPaymentResponseEntity>(CreditCardPaymentResponseEntity(), _notifySubscribers);
-    //CreditCardPaymentResponseEntity creditCardPaymentResponseEntity = ExampleLocator().repository.get(_scopePaymentResponse!);
-    //print("CreditCardPaymentResponseUseCase->creditCardPaymentResponseEntity " + creditCardPaymentResponseEntity.props.toString());
-    //print("CreditCardPaymentResponseUseCase->ExampleLocator().repository.runServiceAdapter");
     await ExampleLocator().repository.runServiceAdapter(_scopePaymentResponse!, CreditCardPaymentResponseServiceAdapter());
     sendViewModelToSubscribers();
   }
@@ -26,12 +22,10 @@ class CreditCardPaymentResponseUseCase extends UseCase {
   }
 
   void _notifySubscribers(entity) {
-    //print("CreditCardPaymentResponseUseCase._notifySubscribers");
     _viewModelCallBack(buildViewModel(entity));
   }
 
   CreditCardPaymentResponseViewModel buildViewModel(CreditCardPaymentResponseEntity creditCardPaymentResponseEntity) {
-    //print("CreditCardPaymentResponseUseCase.buildViewModel");
     if (creditCardPaymentResponseEntity.errors.length > 0)
       return buildViewModelStatusError(creditCardPaymentResponseEntity) ;
     else
@@ -39,7 +33,6 @@ class CreditCardPaymentResponseUseCase extends UseCase {
   }
 
   CreditCardPaymentResponseViewModel buildViewModelStatusOK(CreditCardPaymentResponseEntity creditCardPaymentResponseEntity) {
-    //print("CreditCardPaymentResponseUseCase.buildViewModelStatusOK");
     return CreditCardPaymentResponseViewModel(
       number: creditCardPaymentResponseEntity.number,
       name: creditCardPaymentResponseEntity.name,
@@ -51,7 +44,6 @@ class CreditCardPaymentResponseUseCase extends UseCase {
   }
 
   CreditCardPaymentResponseViewModel buildViewModelStatusError(CreditCardPaymentResponseEntity creditCardPaymentResponseEntity) {
-    //print("CreditCardPaymentResponseUseCase.buildViewModelStatusError");
     return CreditCardPaymentResponseViewModel(
       number: creditCardPaymentResponseEntity.number,
       name: creditCardPaymentResponseEntity.name,

@@ -1,11 +1,9 @@
 import 'dart:ui';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:business_banking/features/credit_card/model/credit_card_view_model.dart';
 import 'package:clean_framework/clean_framework.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'credit_card_actions.dart';
 
 class CreditCardScreen extends Screen {

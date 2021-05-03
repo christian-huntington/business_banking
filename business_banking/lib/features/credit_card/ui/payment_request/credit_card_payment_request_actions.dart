@@ -1,11 +1,9 @@
-
-
 import 'package:business_banking/features/credit_card/bloc/credit_card_bloc.dart';
+import 'package:business_banking/features/credit_card/bloc/credit_card_view_events.dart';
 import 'package:business_banking/features/credit_card/model/payment_request/credit_card_payment_request_view_model.dart';
 import 'package:clean_framework/clean_framework.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../routes.dart';
 
 class CreditCardPaymentRequestActions {
@@ -20,7 +18,6 @@ class CreditCardPaymentRequestActions {
   }
 
   void pressPayButton(BuildContext context, double paymentValue) {
-    //print("CreditCardPaymentRequestActions.pressPayButton paymentValue = $paymentValue");
     String message = bloc.validatePaymentInformation(viewModel, paymentValue);
     if (message.length > 0) {
       _showDialog(context, "Invalid Information!", message, () {
@@ -33,7 +30,6 @@ class CreditCardPaymentRequestActions {
   }
 
   void onUpdatePaymentValue(BuildContext context, double paymentValue) {
-    //print("CreditCardPaymentRequestActions.onUpdatePaymentValue paymentValue = $paymentValue");
     var event = CreditCardViewEventUpdatePaymentValue(this.viewModel, paymentValue);
     bloc.creditCardViewEventsPipe.send(event);
   }
@@ -55,6 +51,5 @@ class CreditCardPaymentRequestActions {
       ),
     );
   }
-
 
 }

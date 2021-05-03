@@ -14,7 +14,6 @@ class CreditCardService extends EitherService<JsonRequestModel, CreditCardServic
 
   @override
   CreditCardServiceResponseModel parseResponse(Map<String, dynamic> jsonResponse) {
-    //print("CreditCardService.parseResponse " + jsonResponse.toString());
     return CreditCardServiceResponseModel.fromJson(jsonResponse);
   }
 }

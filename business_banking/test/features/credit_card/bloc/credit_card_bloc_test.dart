@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:business_banking/features/credit_card/bloc/credit_card_bloc.dart';
 import 'package:business_banking/features/credit_card/bloc/credit_card_usecase.dart';
+import 'package:business_banking/features/credit_card/bloc/credit_card_view_events.dart';
 import 'package:business_banking/features/credit_card/bloc/payment_request/credit_card_payment_request_usecase.dart';
 import 'package:business_banking/features/credit_card/model/payment_request/credit_card_payment_request_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -50,7 +51,7 @@ void main() {
     );
     var event = CreditCardViewEventUpdatePaymentValue(viewModel, 0);
     bloc.creditCardViewEventsPipeHandler(event);
-    verify(creditCardPaymentRequestUseCaseMock.updatePaymentValue(any)).called(1);
+    verify(creditCardPaymentRequestUseCaseMock.updatePaymentValue(event.paymentValue)).called(1);
   });
 
   test('CreditCardBloc validatePaymentInformation', () async {
@@ -66,8 +67,9 @@ void main() {
       paymentMinimumValue: 100.00,
       paymentValue: 20.00,
     );
-    bloc.validatePaymentInformation(viewModel, 10);
-    verify(creditCardPaymentRequestUseCaseMock.validatePaymentInformation(any)).called(1);
+    double paymentValue = 10;
+    bloc.validatePaymentInformation(viewModel, paymentValue);
+    verify(creditCardPaymentRequestUseCaseMock.validatePaymentInformation(paymentValue)).called(1);
   });
 
   test('CreditCardViewEventUpdatePaymentValue', () async {

@@ -1,10 +1,8 @@
+import 'package:business_banking/dependency/pdf_handler.dart';
 import 'package:business_banking/features/credit_card/bloc/credit_card_bloc.dart';
 import 'package:business_banking/features/credit_card/model/payment_response/credit_card_payment_response_view_model.dart';
 import 'package:clean_framework/clean_framework.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:pdf/widgets.dart' as pw;
-import 'package:printing/printing.dart';
-
 import '../../../../routes.dart';
 
 class CreditCardPaymentResponseActions {
@@ -19,8 +17,8 @@ class CreditCardPaymentResponseActions {
   }
 
   void sharePDFPaymentConfirmation(BuildContext context) async {
-    pw.Document pdf = await bloc.generatePDFPaymentConfirmation(viewModel);
-    Printing.sharePdf(bytes: await pdf.save(), filename: 'payment-confirmation.pdf');
+    PDFHandler pdf = await bloc.generatePDFPaymentConfirmation(viewModel);
+    pdf.share('payment-confirmation.pdf');
   }
 
 }

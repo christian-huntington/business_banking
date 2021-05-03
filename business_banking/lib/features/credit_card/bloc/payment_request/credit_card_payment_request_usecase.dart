@@ -1,6 +1,8 @@
+import 'package:business_banking/dependency/pdf_handler.dart';
 import 'package:business_banking/features/credit_card/model/credit_card_entity.dart';
 import 'package:business_banking/features/credit_card/model/payment_request/credit_card_payment_request_view_model.dart';
 import 'package:business_banking/features/credit_card/model/payment_response/credit_card_payment_response_entity.dart';
+import 'package:business_banking/features/credit_card/model/payment_response/credit_card_payment_response_view_model.dart';
 import 'package:clean_framework/clean_framework.dart';
 import 'package:business_banking/locator.dart';
 import 'package:clean_framework/clean_framework_defaults.dart';
@@ -12,11 +14,9 @@ class CreditCardPaymentRequestUseCase extends UseCase {
   CreditCardPaymentRequestUseCase(ViewModelCallback<ViewModel> viewModelCallBack) : _viewModelCallBack = viewModelCallBack;
 
   Future<void> create() async {
-    // print("CreditCardPaymentRequestUseCase.create");
     _scopeCreditCardEntity = ExampleLocator().repository.create<CreditCardEntity>(CreditCardEntity(), _notifySubscribers);
     _scopeCreditCardPaymentResponseEntity = ExampleLocator().repository.create<CreditCardPaymentResponseEntity>(CreditCardPaymentResponseEntity(), _notifySubscribers);
     CreditCardEntity creditCardEntity = ExampleLocator().repository.get(_scopeCreditCardEntity!);
-    // print("CreditCardPaymentRequestUseCase. creditCardEntity " + creditCardEntity.props.toString());
     updateCreditCardInfo(creditCardEntity);
   }
 
@@ -68,5 +68,8 @@ class CreditCardPaymentRequestUseCase extends UseCase {
     return '';
   }
 
+  Future<PDFHandler> generatePDFPaymentConfirmation(CreditCardPaymentResponseViewModel viewModel) async {
+    return PDFHandler.createFromPDFFactory(PDFFactoryCreditCardPaymentConfirmation(viewModel.name, viewModel.paymentValue));
+  }
 
 }

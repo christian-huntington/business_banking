@@ -97,7 +97,6 @@ class CreditCardPaymentResponseSuccess extends StatelessWidget {
                       actions.sharePDFPaymentConfirmation(context);
                     },
                     child: Text('Share', style: TextStyle(fontSize: 20.0))),
-
               ],
             ),
           ],

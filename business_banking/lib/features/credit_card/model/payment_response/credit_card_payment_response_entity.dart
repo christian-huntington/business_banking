@@ -1,8 +1,5 @@
 import 'package:clean_framework/clean_framework.dart';
 
-import 'credit_card_payment_response_view_model.dart';
-import '../credit_card_view_model.dart';
-
 class CreditCardPaymentResponseEntity extends Entity {
   final String number;
   final String name;

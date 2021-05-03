@@ -5,6 +5,7 @@ import 'package:business_banking/features/credit_card/ui/payment_request/credit_
 import 'package:business_banking/features/credit_card/ui/payment_request/credit_card_payment_request_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intl/intl.dart';
 import 'package:mockito/mockito.dart';
 
 class CreditCardPaymentRequestActionsMock extends Mock implements CreditCardPaymentRequestActions {}
@@ -45,37 +46,32 @@ void main() {
     await tester.pumpWidget(testWidget);
     await tester.pump(Duration(milliseconds: 500));
     expect(find.byType(CreditCardPaymentRequestScreen), findsOneWidget);
+
+    /// name
+    expect(find.text(viewModel.name), findsOneWidget);
+
+    /// lastFour
+    expect(find.text('*' + viewModel.lastFour), findsOneWidget);
+
+    /// balance
+    expect(find.text(NumberFormat.simpleCurrency().format(viewModel.balance)), findsOneWidget);
+
+    /// pay button
+    expect(find.text('Pay'), findsOneWidget);
   });
 
-  /*
-  testWidgets('CreditCardScreen viewModel values x screen values',
-        (tester) async {
-
-      await tester.pumpWidget(testWidget);
-      await tester.pump(Duration(milliseconds: 500));
-
-      /// name
-      expect(find.text(viewModel.name), findsOneWidget);
-
-      /// lastFour
-      expect(find.text('*' + viewModel.lastFour), findsOneWidget);
-
-      /// balance
-      expect(find.text(NumberFormat.simpleCurrency().format(viewModel.balance)), findsOneWidget);
-    });
-
-  testWidgets('CreditCardScreen actions',
+  testWidgets('CreditCardPaymentRequestScreen actions',
       (tester) async {
 
     await tester.pumpWidget(testWidget);
     await tester.pump(Duration(milliseconds: 500));
 
-    /// navigateToCreditCardDetails
-    var widget = find.byKey(Key('creditCardCard'));
+    /// pressPayButton
+    var widget = find.byKey(Key('payButton'));
     expect(widget, findsOneWidget);
     await tester.tap(widget);
-    verify(actions.navigateToCreditCardDetails(any)).called(1);
+    verify(actions.pressPayButton(any, any)).called(1);
 
   });
-   */
+
 }

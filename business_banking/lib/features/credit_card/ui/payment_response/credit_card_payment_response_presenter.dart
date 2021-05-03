@@ -8,13 +8,11 @@ import 'credit_card_payment_response_screen.dart';
 class CreditCardPaymentResponsePresenter extends Presenter<CreditCardBloc, CreditCardPaymentResponseViewModel, CreditCardPaymentResponseScreen> {
   @override
   Stream<CreditCardPaymentResponseViewModel> getViewModelStream(CreditCardBloc bloc) {
-    //print("CreditCardPaymentResponsePresenter.getViewModelStream");
     return bloc.creditCardPaymentResponseViewModelPipe.receive;
   }
 
   @override
   CreditCardPaymentResponseScreen buildScreen(BuildContext context, CreditCardBloc bloc, CreditCardPaymentResponseViewModel viewModel) {
-    //print("CreditCardPaymentResponsePresenter.buildScreen");
     return CreditCardPaymentResponseScreen(
       viewModel: viewModel,
       actions: CreditCardPaymentResponseActions(bloc, viewModel),

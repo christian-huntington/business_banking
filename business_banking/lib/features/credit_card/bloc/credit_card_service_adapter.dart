@@ -4,13 +4,11 @@ import 'package:business_banking/features/credit_card/model/credit_card_entity.d
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework/clean_framework_defaults.dart';
 
-
 class CreditCardServiceAdapter extends ServiceAdapter<CreditCardEntity, JsonRequestModel, CreditCardServiceResponseModel, CreditCardService> {
   CreditCardServiceAdapter() : super(CreditCardService());
 
   @override
   CreditCardEntity createEntity(CreditCardEntity creditCardEntityModel, CreditCardServiceResponseModel responseModel) {
-    //print("CreditCardServiceAdapter.createEntity");
     return creditCardEntityModel.merge(
       number: responseModel.number,
       name: responseModel.name,

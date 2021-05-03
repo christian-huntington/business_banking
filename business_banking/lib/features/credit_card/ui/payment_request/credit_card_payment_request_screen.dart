@@ -1,13 +1,10 @@
-
 import 'dart:ui';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:business_banking/features/credit_card/model/payment_request/credit_card_payment_request_view_model.dart';
 import 'package:clean_framework/clean_framework.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-
 import 'credit_card_payment_request_actions.dart';
 
 class CreditCardPaymentRequestScreen extends Screen {
@@ -25,7 +22,6 @@ class CreditCardPaymentRequestScreen extends Screen {
 
   @override
   Widget build(BuildContext context) {
-    //print("CreditCardPaymentRequestScreen.build");
     setPaymentValueTextEditingControllerValue(viewModel.paymentValue);
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -163,10 +159,8 @@ class CreditCardPaymentRequestScreen extends Screen {
   }
 
   double _getPaymentValue() {
-    // print(_paymentValueTextEditingController.text);
     try {
       String stringValue = formatNumericString(_paymentValueTextEditingController.text);
-      //print("_getPaymentValue = " + stringValue);
       double paymentValue = double.parse(stringValue);
       return paymentValue;
     } catch (error) {
@@ -175,7 +169,6 @@ class CreditCardPaymentRequestScreen extends Screen {
   }
 
   void onPaymentValueChange(BuildContext context, String val) {
-    //print("CreditCardPaymentRequestScreen.onPaymentValueChange val = " + val);
     String stringValue = formatNumericString(val);
     try {
       double paymentValue = double.parse(stringValue);
@@ -186,7 +179,6 @@ class CreditCardPaymentRequestScreen extends Screen {
   }
 
   void onPaymentValueSaved(BuildContext context) {
-    //print("CreditCardPaymentRequestScreen.onPaymentValueSaved ");
     try {
       double paymentValue = double.parse(_paymentValueTextEditingController.text);
       actions.onUpdatePaymentValue(context, paymentValue);

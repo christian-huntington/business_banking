@@ -9,7 +9,6 @@ class CreditCardDetailsWidget extends StatelessWidget {
   @override
 
   Widget build(BuildContext context) {
-    //print("CreditCardPaymentResponseWidget.build " + context.hashCode.toString());
     return BlocProvider<CreditCardBloc>(
       create: (_) => CreditCardBloc(),
       child: CreditCardDetailsPresenter(),

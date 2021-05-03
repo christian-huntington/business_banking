@@ -1,10 +1,8 @@
 import 'dart:ui';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:clean_framework/clean_framework.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../../model/credit_card_view_model.dart';
 import 'credit_card_details_actions.dart';
 
@@ -19,7 +17,6 @@ class CreditCardDetailsScreen extends Screen {
 
   @override
   Widget build(BuildContext context) {
-    //print("CreditCardDetailsScreen.build");
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(

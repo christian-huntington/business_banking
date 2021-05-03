@@ -33,8 +33,6 @@ class CreditCardViewModel extends ViewModel {
         transactions,
       ];
 
-
-
 }
 
 class CreditCardTransaction {
@@ -45,12 +43,10 @@ class CreditCardTransaction {
 
   CreditCardTransaction({required this.id, required this.name, required this.value, required this.date});
 
-
   CreditCardTransaction.fromJson(Map<String, dynamic> json)
       : id = json['id'] ?? '',
         name = json['name'] ?? '',
         value = json['value'] ?? 0.00,
         date = json['date'] == null ? DateTime.fromMicrosecondsSinceEpoch(0) : DateTime.parse(json['date']);
-
 
 }

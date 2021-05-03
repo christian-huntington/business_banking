@@ -9,10 +9,7 @@ class CreditCardUseCase extends UseCase {
   CreditCardUseCase(ViewModelCallback<ViewModel> viewModelCallBack) : _viewModelCallBack = viewModelCallBack;
 
   Future<void> create() async {
-    //print("CreditCardUseCase.create");
     final scope = ExampleLocator().repository.create<CreditCardEntity>(CreditCardEntity(), _notifySubscribers);
-
-    //print("CreditCardUseCase. ExampleLocator().repository.runServiceAdapter");
     return ExampleLocator().repository.runServiceAdapter(scope, CreditCardServiceAdapter());
   }
 

@@ -1,5 +1,4 @@
 import 'package:clean_framework/clean_framework.dart';
-
 import 'credit_card_view_model.dart';
 
 class CreditCardEntity extends Entity {
